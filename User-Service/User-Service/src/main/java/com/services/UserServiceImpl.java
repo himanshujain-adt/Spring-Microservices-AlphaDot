@@ -1,6 +1,7 @@
 package com.services;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,12 @@ public class UserServiceImpl implements UserServiceInt {
 
 	@Autowired
 	private UserRepositoriesInt userRepositoriesInt;
+
 	@Override
 	public User saveUser(User user) {
 		// TODO Auto-generated method stub
-		
+		String userId = UUID.randomUUID().toString();
+		user.setUserId(userId);
 		return userRepositoriesInt.save(user);
 	}
 
@@ -29,8 +32,7 @@ public class UserServiceImpl implements UserServiceInt {
 	@Override
 	public User getUser(String userId) {
 		// TODO Auto-generated method stub
-		return userRepositoriesInt.findById(userId).orElseThrow() ;
+		return userRepositoriesInt.findById(userId).orElseThrow();
 	}
-	
 
 }
