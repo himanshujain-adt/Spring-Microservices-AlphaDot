@@ -43,9 +43,10 @@ public class UserServiceImpl implements UserServiceInt {
 		// TODO Auto-generated method stub
 		User user = userRepositoriesInt.findById(userId).orElseThrow();
 //		http://localhost:7003/ratings/users/bd5b5b1f-b723-4787-a7b1-ab31082194a6
-		ArrayList forObject = restTemplate.getForObject(
+		ArrayList ratingsoFUser = restTemplate.getForObject(
 				"http://localhost:7003/ratings/users/bd5b5b1f-b723-4787-a7b1-ab31082194a6", ArrayList.class);
-		logger.info("{}", forObject);
+		logger.info("{}", ratingsoFUser);
+		user.setRatings(ratingsoFUser);
 		return user;
 
 	}
